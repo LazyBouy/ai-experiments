@@ -1,0 +1,818 @@
+app:
+  description: 'It''s about you and your business all the way through! You and I grow
+    together
+
+
+    We are here to help you with setting up your business. We understand the pains
+    of a small business because we are a small business as well. We are here to grow
+    together.'
+  icon: "\U0001F916"
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: Delina Inc.
+workflow:
+  features:
+    file_upload:
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: question-classifier
+      id: 1716983487434-source-1716983631755-target
+      source: '1716983487434'
+      sourceHandle: source
+      target: '1716983631755'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: question-classifier
+        targetType: knowledge-retrieval
+      id: 1716983631755-1-1716985929453-target
+      source: '1716983631755'
+      sourceHandle: '1'
+      target: '1716985929453'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: question-classifier
+        targetType: knowledge-retrieval
+      id: 1716983631755-2-1716996979602-target
+      source: '1716983631755'
+      sourceHandle: '2'
+      target: '1716996979602'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: question-classifier
+        targetType: knowledge-retrieval
+      id: 1716983631755-1716985228506-1716998834805-target
+      source: '1716983631755'
+      sourceHandle: '1716985228506'
+      target: '1716998834805'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: question-classifier
+        targetType: knowledge-retrieval
+      id: 1716983631755-1716985318190-1717000305772-target
+      source: '1716983631755'
+      sourceHandle: '1716985318190'
+      target: '1717000305772'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: question-classifier
+        targetType: knowledge-retrieval
+      id: 1716983631755-1716987294889-1717001063181-target
+      source: '1716983631755'
+      sourceHandle: '1716987294889'
+      target: '1717001063181'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1717001063181-source-1717001682004-target
+      source: '1717001063181'
+      sourceHandle: source
+      target: '1717001682004'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1717001682004-source-1717002655325-target
+      source: '1717001682004'
+      sourceHandle: source
+      target: '1717002655325'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1717000305772-source-1717002719974-target
+      source: '1717000305772'
+      sourceHandle: source
+      target: '1717002719974'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1717002719974-source-1717002820123-target
+      source: '1717002719974'
+      sourceHandle: source
+      target: '1717002820123'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1716998834805-source-1717002969343-target
+      source: '1716998834805'
+      sourceHandle: source
+      target: '1717002969343'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1717002969343-source-1717003070230-target
+      source: '1717002969343'
+      sourceHandle: source
+      target: '1717003070230'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1716996979602-source-1717003117742-target
+      source: '1716996979602'
+      sourceHandle: source
+      target: '1717003117742'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1717003117742-source-1717003202584-target
+      source: '1717003117742'
+      sourceHandle: source
+      target: '1717003202584'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1716985929453-source-1717003222907-target
+      source: '1716985929453'
+      sourceHandle: source
+      target: '1717003222907'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1717003222907-source-1717003366086-target
+      source: '1717003222907'
+      sourceHandle: source
+      target: '1717003366086'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Start
+        type: start
+        variables:
+        - label: user_input
+          max_length: 256
+          options: []
+          required: true
+          type: text-input
+          variable: user_input
+      height: 90
+      id: '1716983487434'
+      position:
+        x: 83.48220225318437
+        y: 282
+      positionAbsolute:
+        x: 83.48220225318437
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        classes:
+        - id: '1'
+          name: Product and Service
+        - id: '2'
+          name: Sales and Onboarding
+        - id: '1716985228506'
+          name: Technical Support
+        - id: '1716985318190'
+          name: Billing and Payments
+        - id: '1716987294889'
+          name: Account Management
+        desc: ''
+        instruction: 'As a receptionist at Delina Consultancy Incorporated, you serve
+          as the initial point of contact for customers and manage all their inquiries.
+          Your role is crucial in ensuring that every query is directed to the appropriate
+          department, ensuring a smooth flow of information within the organization.
+
+          '
+        instructions: ''
+        model:
+          completion_params:
+            temperature: 0
+          mode: chat
+          name: llama3-70b-8192
+          provider: groq
+        query_variable_selector:
+        - '1716983487434'
+        - user_input
+        selected: false
+        title: Receptionist
+        topics: []
+        type: question-classifier
+      height: 304
+      id: '1716983631755'
+      position:
+        x: 385
+        y: 282
+      positionAbsolute:
+        x: 385
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        dataset_ids:
+        - 19cfb2d8-734c-4022-860f-f88e52010e5e
+        desc: '1. Service Details: Information about specific marketing services offered.
+
+          2. Pricing and Packages: Questions about pricing, discounts, packages, and
+          subscription plans.
+
+          3. Service Features: Inquiries about the features and benefits of the services
+          provided.
+
+          4. Comparison: Comparing different service packages or options.'
+        query_variable_selector:
+        - '1716983487434'
+        - user_input
+        retrieval_mode: single
+        selected: false
+        single_retrieval_config:
+          model:
+            completion_params: {}
+            mode: chat
+            name: llama3:8b
+            provider: ollama
+        title: Product and Service
+        type: knowledge-retrieval
+      height: 284
+      id: '1716985929453'
+      position:
+        x: 699
+        y: 85.00000000000003
+      positionAbsolute:
+        x: 699
+        y: 85.00000000000003
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        dataset_ids:
+        - 5298501b-ef6a-4d58-bb5c-b83c5c4ec986
+        desc: '1. Service Selection: Assistance in choosing the right service based
+          on customer needs.
+
+          2. Trial and Demos: Requests for trials, demos, or sample work.
+
+          3. Onboarding Process: Guidance on how to get started with the services.
+
+          4. Account Setup: Help with setting up accounts or profiles.'
+        query_variable_selector:
+        - '1716983487434'
+        - user_input
+        retrieval_mode: single
+        selected: false
+        single_retrieval_config:
+          model:
+            completion_params: {}
+            mode: chat
+            name: llama3:8b
+            provider: ollama
+        title: Sales and Onboarding
+        type: knowledge-retrieval
+      height: 266
+      id: '1716996979602'
+      position:
+        x: 699
+        y: 408
+      positionAbsolute:
+        x: 699
+        y: 408
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        dataset_ids:
+        - 34c6fb4d-3164-47da-9b74-adec39b80d8b
+        desc: '1. Website Issues: Problems with accessing or using the company''s
+          website.
+
+          2. Tool Integration: Assistance with integrating marketing tools and software.
+
+          3. Service Functionality: Troubleshooting issues with the functionality
+          of services provided.
+
+          4. Technical Difficulties: General tech support queries.'
+        query_variable_selector:
+        - '1716983487434'
+        - user_input
+        retrieval_mode: single
+        selected: false
+        single_retrieval_config:
+          model:
+            completion_params: {}
+            mode: chat
+            name: llama3:8b
+            provider: ollama
+        title: Technical Support
+        type: knowledge-retrieval
+      height: 302
+      id: '1716998834805'
+      position:
+        x: 699
+        y: 713
+      positionAbsolute:
+        x: 699
+        y: 713
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        dataset_ids:
+        - 6edec05d-553d-4df1-bae3-5465da90aa46
+        desc: '1. Invoice Inquiries: Questions about invoices and billing statements.
+
+          2. Payment Issues: Problems related to payment processing.
+
+          3. Refunds and Cancellations: Requests for refunds or cancellations of services.
+
+          4. Billing Cycle: Information about billing cycles and payment due dates.'
+        query_variable_selector:
+        - '1716983487434'
+        - user_input
+        retrieval_mode: single
+        selected: false
+        single_retrieval_config:
+          model:
+            completion_params: {}
+            mode: chat
+            name: llama3:8b
+            provider: ollama
+        title: Billing and Payments
+        type: knowledge-retrieval
+      height: 248
+      id: '1717000305772'
+      position:
+        x: 699
+        y: 1054
+      positionAbsolute:
+        x: 699
+        y: 1054
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        dataset_ids:
+        - 05e42d07-c33c-4d4f-a775-42eb0c9e366c
+        desc: '1. Account Details: Updating or changing account information.
+
+          2. Subscription Management: Managing service subscriptions or memberships.
+
+          3. Data Privacy: Questions regarding data privacy and security.
+
+          4. Usage Reports: Requests for usage reports or service performance metrics.'
+        query_variable_selector:
+        - '1716983487434'
+        - user_input
+        retrieval_mode: single
+        selected: false
+        single_retrieval_config:
+          model:
+            completion_params: {}
+            mode: chat
+            name: llama3:8b
+            provider: ollama
+        title: Account Management
+        type: knowledge-retrieval
+      height: 248
+      id: '1717001063181'
+      position:
+        x: 699
+        y: 1341
+      positionAbsolute:
+        x: 699
+        y: 1341
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1717001063181'
+          - result
+        desc: Account Management Agent
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: llama3-70b-8192
+          provider: groq
+        prompt_template:
+        - id: 18eeed2e-74ff-4089-b0cc-a55e40152159
+          role: system
+          text: "You are an Account Management representative for Delina Inc, a marketing\
+            \ agency specifically designed for small businesses. \nAt Delina Inc.\
+            \ we understand the pains of a small business because we are a small business\
+            \ as well. We are here to grow together. \nYour role is to assist customers\
+            \ with their account-related queries in a professional, clear, and empathetic\
+            \ manner. \nPlease also use these additional information as context to\
+            \ provide your response in the most empathetic way possible.\n{{#context#}}"
+        - id: 08722fb0-6038-4046-bea7-7a11dce53682
+          role: user
+          text: 'User query: {{#1716983487434.user_input#}}'
+        selected: false
+        title: Account Management Agent
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 128
+      id: '1717001682004'
+      position:
+        x: 1003
+        y: 1341
+      positionAbsolute:
+        x: 1003
+        y: 1341
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: Account Management
+        outputs:
+        - value_selector:
+          - '1717001682004'
+          - text
+          variable: text
+        selected: true
+        title: Account Management
+        type: end
+      height: 120
+      id: '1717002655325'
+      position:
+        x: 1307
+        y: 1341
+      positionAbsolute:
+        x: 1307
+        y: 1341
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1717000305772'
+          - result
+        desc: Billing and Payment Agent
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: llama3-70b-8192
+          provider: groq
+        prompt_template:
+        - id: 785d780a-eb63-4a93-81c4-b0f91c39ec84
+          role: system
+          text: "You are a Billing and Payment representative for Delina Inc, a marketing\
+            \ agency specifically designed for small businesses. \nAt Delina Inc.\
+            \ we understand the pains of a small business because we are a small business\
+            \ as well. We are here to grow together. \nYour role is to assist customers\
+            \ with their billing and payment related queries in a professional, clear,\
+            \ and empathetic manner. \nPlease also use these additional information\
+            \ as context to provide your response in the most empathetic way possible.\n\
+            {{#context#}}"
+        - id: 14650508-88a8-4795-b8a3-a80b7b86f999
+          role: user
+          text: 'User query: {{#1716983487434.user_input#}}'
+        selected: false
+        title: Billing and Payment Agent
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 128
+      id: '1717002719974'
+      position:
+        x: 1003
+        y: 1054
+      positionAbsolute:
+        x: 1003
+        y: 1054
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: Billing and Payment
+        outputs:
+        - value_selector:
+          - '1717002719974'
+          - text
+          variable: text
+        selected: false
+        title: Billing and Payment
+        type: end
+      height: 120
+      id: '1717002820123'
+      position:
+        x: 1307
+        y: 1054
+      positionAbsolute:
+        x: 1307
+        y: 1054
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1716998834805'
+          - result
+        desc: 'Technical Support '
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: llama3-70b-8192
+          provider: groq
+        prompt_template:
+        - id: 55f09787-1955-4fa7-8c8a-a447b92f641b
+          role: system
+          text: "You are a Technical Support representative for Delina Inc, a marketing\
+            \ agency specifically designed for small businesses. \nAt Delina Inc.\
+            \ we understand the pains of a small business because we are a small business\
+            \ as well. We are here to grow together. \nYour role is to assist customers\
+            \ with their billing and payment related queries in a professional, clear,\
+            \ and empathetic manner. \nPlease also use these additional information\
+            \ as context to provide your response in the most empathetic way possible.\n\
+            {{#context#}}"
+        - id: eeb4ba68-0e47-4ad4-9068-50bf20be9087
+          role: user
+          text: 'User Query: {{#1716983487434.user_input#}}'
+        selected: false
+        title: Technical Support Agent
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 128
+      id: '1717002969343'
+      position:
+        x: 1003
+        y: 713
+      positionAbsolute:
+        x: 1003
+        y: 713
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: 'Technical Support '
+        outputs:
+        - value_selector:
+          - '1717002969343'
+          - text
+          variable: text
+        selected: false
+        title: 'Technical Support '
+        type: end
+      height: 120
+      id: '1717003070230'
+      position:
+        x: 1307
+        y: 713
+      positionAbsolute:
+        x: 1307
+        y: 713
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1716996979602'
+          - result
+        desc: Sales and Onboarding
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: llama3-70b-8192
+          provider: groq
+        prompt_template:
+        - id: 272a7b6b-9456-4793-8467-0fcf1e8cca9d
+          role: system
+          text: "You are a Sales and Onboarding representative for Delina Inc, a marketing\
+            \ agency specifically designed for small businesses. \nAt Delina Inc.\
+            \ we understand the pains of a small business because we are a small business\
+            \ as well. We are here to grow together. \nYour role is to assist customers\
+            \ with their billing and payment related queries in a professional, clear,\
+            \ and empathetic manner. \nPlease also use these additional information\
+            \ as context to provide your response in the most empathetic way possible.\n\
+            {{#context#}}"
+        - id: c5ec010b-6561-4ba9-baa0-960e085b4165
+          role: user
+          text: 'User Query: {{#1716983487434.user_input#}}'
+        selected: false
+        title: Sales and Onboarding Agent
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 128
+      id: '1717003117742'
+      position:
+        x: 1003
+        y: 408
+      positionAbsolute:
+        x: 1003
+        y: 408
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: 'Sales and Onboarding '
+        outputs:
+        - value_selector:
+          - '1717003117742'
+          - text
+          variable: text
+        selected: false
+        title: 'Sales and Onboarding '
+        type: end
+      height: 120
+      id: '1717003202584'
+      position:
+        x: 1307
+        y: 408
+      positionAbsolute:
+        x: 1307
+        y: 408
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1716985929453'
+          - result
+        desc: Product and Service
+        model:
+          completion_params:
+            temperature: 0
+          mode: chat
+          name: llama3-70b-8192
+          provider: groq
+        prompt_template:
+        - id: 785653b2-e68c-41e6-8a33-1245d9c76412
+          role: system
+          text: "You are a Product and Service representative for Delina Inc, a marketing\
+            \ agency specifically designed for small businesses. \nAt Delina Inc.\
+            \ we understand the pains of a small business because we are a small business\
+            \ as well. We are here to grow together. \nYour role is to assist customers\
+            \ with their billing and payment related queries in a professional, clear,\
+            \ and empathetic manner. \nPlease also use these additional information\
+            \ as context to provide your response in the most empathetic way possible.\n\
+            {{#context#}}"
+        - id: ced09651-2a32-4e09-9583-d2458c8961cd
+          role: user
+          text: 'User Query: {{#1716983487434.user_input#}}'
+        selected: false
+        title: Product and Service Agent
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 128
+      id: '1717003222907'
+      position:
+        x: 1010.9170474646373
+        y: 85.00000000000003
+      positionAbsolute:
+        x: 1010.9170474646373
+        y: 85.00000000000003
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: Product and Service
+        outputs:
+        - value_selector:
+          - '1717003222907'
+          - text
+          variable: text
+        selected: false
+        title: Product and Service
+        type: end
+      height: 120
+      id: '1717003366086'
+      position:
+        x: 1307
+        y: 85.00000000000003
+      positionAbsolute:
+        x: 1307
+        y: 85.00000000000003
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 233.11545124423554
+      y: 155.58551292606163
+      zoom: 0.5000000000000008

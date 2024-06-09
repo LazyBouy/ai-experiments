@@ -1,0 +1,100 @@
+This manual is designed to help the sales team answer customer queries related to our products and services, onboarding process, account setup, and trials and demos. Please follow the guidelines below to ensure consistent and accurate responses to customer inquiries.
+
+	Customer Query: "I'm having trouble accessing your website. Can you help?" (Website Issues)
+	Response:
+		Initial Checks: Ask the customer to try basic troubleshooting steps such as:
+			Clearing their browser cache and cookies.
+			Trying a different browser or device.
+			Checking their internet connection.
+		Report Issue: If the issue persists, gather specific details such as error messages, the URL they are trying to access, and any recent changes they made.
+		Escalation: Log the issue and escalate it to the web development team for further investigation.
+		
+	Customer Query: "The website is loading slowly. What should I do?" (Website Issues)
+	Response:
+		Speed Test: Ask the customer to run a website speed test using tools like Google PageSpeed Insights or GTmetrix.
+		Optimization Tips: Provide tips to improve loading speed, such as:
+			Reducing image sizes.
+			Minimizing the use of plugins.
+			Enabling browser caching.
+		Further Assistance: If the issue is server-related, escalate it to the hosting provider or the technical team.
+		
+	Customer Query: "How do I integrate your SEO tool with my website?" (Tool Integration)
+	Response:
+		Documentation: Provide a link to detailed documentation or a guide on integrating the SEO tool with their website platform (e.g., WordPress, Shopify).
+		Basic Steps: Outline the basic steps for integration:
+			Access API Key: Log in to the SEO tool and generate an API key.
+			Install Plugin: Install the appropriate plugin or add-on on their website.
+			Configure Settings: Enter the API key and configure the settings as per the documentation.
+		Support: Offer to assist with the integration process via a call or screen-sharing session if needed.
+		
+	Customer Query: "Can you help me set up Google Analytics with your services?" (Tool Integration)
+	Response:
+		Setup Guide: Provide a step-by-step guide to setting up Google Analytics:
+			Create Account: Sign up for a Google Analytics account if they don’t have one.
+			Add Property: Add their website as a property in Google Analytics.
+			Tracking Code: Copy the tracking code provided by Google Analytics.
+			Install Code: Paste the tracking code into the website’s header or use a plugin to insert it.
+		Verification: Guide them on how to verify the setup by checking real-time data in Google Analytics.
+		Further Assistance: Offer further assistance if they encounter any issues during the setup process.
+		
+	Customer Query: "I'm not seeing the expected results from the PPC campaign. What's wrong?" (Service Functionality)
+	Response:
+		Campaign Review: Request access to their PPC account to review the campaign settings, keywords, ad copy, and targeting.
+		Common Issues: Identify common issues such as:
+			Incorrect targeting settings.
+			Poor keyword selection.
+			Low-quality ad copy or landing pages.
+		Optimization Tips: Provide tips for optimizing the campaign, such as adjusting bid strategies, improving ad relevance, and enhancing landing page experience.
+		Further Analysis: If necessary, escalate the issue to a PPC specialist for a detailed analysis and recommendations.
+		
+	Customer Query: "The social media scheduler isn't working properly. Can you assist?" (Service Functionality)
+	Response:
+		Troubleshooting Steps: Ask the customer to try the following steps:
+			Ensure their social media accounts are properly connected.
+			Check for any scheduled maintenance or updates on the platform.
+			Log out and log back in to the scheduler tool.
+		Error Details: Gather details about the specific issue, such as error messages and steps to reproduce the problem.
+		Resolution: If the issue persists, escalate it to the technical team for further investigation and resolution.
+		
+	Customer Query: "I'm experiencing technical difficulties with your email marketing platform." (Technical Difficulties)
+	Response:
+		Basic Troubleshooting: Ask the customer to:
+			Clear their browser cache and cookies.
+			Try accessing the platform from a different browser or device.
+			Ensure their browser is up to date.
+		Error Details: Request specific details about the technical difficulties, including error messages, actions taken before the issue occurred, and any screenshots.
+		Escalation: If the issue cannot be resolved with basic troubleshooting, escalate it to the technical support team for a deeper investigation.
+		
+	Customer Query: "How do I resolve issues with the campaign tracking tool?" (Technical Difficulties)
+	Response:
+		Initial Checks: Verify that the tracking code is correctly installed on the website.
+		Common Issues: Identify common issues such as:
+			JavaScript errors preventing the tracking code from running.
+			Incorrect tracking code placement.
+			Conflicts with other scripts or plugins.
+		Troubleshooting Guide: Provide a troubleshooting guide to address these issues.
+		Further Assistance: Offer to review the website setup and tracking code implementation if the customer continues to experience problems.
+
+Additional Tips for Technical Support Team
+	Stay Updated: Keep yourself updated with the latest features and updates of the tools and platforms your company uses.
+	Empathy and Patience: Always show empathy and patience when dealing with frustrated customers. Acknowledge their concerns and assure them of your commitment to resolving their issues.
+	Documentation: Maintain comprehensive documentation for common issues and their resolutions. This can be a valuable resource for quick reference.
+	Follow-Up: Ensure to follow up with customers after resolving their issues to confirm that everything is working smoothly and to reinforce customer satisfaction.
+
+Below are few example question for each categories:
+
+	Website Issues:
+		"I'm having trouble accessing your website. Can you help?"
+		"The website is loading slowly. What should I do?"
+	
+	Tool Integration:
+		"How do I integrate your SEO tool with my website?"
+		"Can you help me set up Google Analytics with your services?"
+	
+	Service Functionality:
+		"I'm not seeing the expected results from the PPC campaign. What's wrong?"
+		"The social media scheduler isn't working properly. Can you assist?"
+	
+	Technical Difficulties:
+		"I'm experiencing technical difficulties with your email marketing platform."
+		"How do I resolve issues with the campaign tracking tool?"

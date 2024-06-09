@@ -1,0 +1,165 @@
+This manual is designed to help the sales team answer customer queries related to our products and services, onboarding process, account setup, and trials and demos. Please follow the guidelines below to ensure consistent and accurate responses to customer inquiries.
+
+Description of our Sales and Onboarding process
+
+	Customer Query: "Which service package is best for a small e-commerce business?" (Service Selection)
+	Response:
+		Assess Needs: Ask the customer about their specific needs, goals, and current challenges.
+		Recommend Package: Based on their response, recommend a suitable package. For example:
+			Starter Package: Suitable for small e-commerce businesses starting with online presence.
+			Growth Package: Ideal for those looking to expand their reach and optimize performance.
+			Premium Package: Best for businesses aiming for comprehensive, end-to-end marketing solutions.
+		Benefits Highlight: Explain the key benefits of the recommended package and how it aligns with their business goals.
+		
+	Customer Query: "Can you help me decide which marketing service I need?" (Service Selection)
+	Response:
+		Understand Requirements: Ask the customer about their business type, target audience, and marketing objectives.
+		Explain Services: Provide a brief overview of each service:
+			Website Management: Essential for a strong online presence.
+			Social Media Management: Great for engagement and brand building on platforms like Facebook, Instagram, X, TikTok, and LinkedIn.
+			SEO Optimization: Important for improving search engine rankings and driving organic traffic.
+			Marketing Strategy Development: Useful for businesses needing a comprehensive marketing plan.
+		Match Needs: Suggest the services that best meet their requirements based on the information provided.
+		
+	Customer Query: "What kind of results can I expect from your SEO services?" (Service Selection)
+	Response:
+		Expectation Setting: Explain that SEO results can vary based on the industry, competition, and current website status.
+		Typical Results: Provide general timelines and potential improvements, such as increased organic traffic, higher search engine rankings, and better website visibility.
+		Case Studies: Offer to share case studies or testimonials from similar businesses that have seen positive results.
+
+	Customer Query: "Do you offer services for B2B companies?" (Service Selection)
+	Response:
+		Affirmation: Confirm that your services cater to both B2B and B2C companies.
+		Service Highlight: Explain which services are particularly beneficial for B2B, such as LinkedIn management, content marketing, and targeted ad campaigns.
+		Customization: Mention that you can tailor your services to meet the specific needs of B2B clients.
+
+	Customer Query: "What is the difference between your Growth and Premium packages?" (Service Selection)
+	Response:
+		Comparison Overview: Provide a side-by-side comparison of the Growth and Premium packages.
+		Service Details: Highlight the additional services and benefits included in the Premium package, such as more comprehensive website management, additional social media platforms, and advanced SEO tactics.
+		Value Proposition: Explain the value and ROI of investing in the Premium package for businesses aiming for extensive growth.
+		
+	Customer Query: "Do you offer a free trial for your services?" (Trials and demos)
+	Response:
+		Trial Availability: Inform the customer if a free trial is available for specific services.
+		Trial Details: Provide details on the duration and scope of the trial. For example:
+		Website Management: 14-day free trial with limited features.
+		Social Media Management: One-month trial for basic content creation and posting.
+		Sign-Up Process: Guide them on how to sign up for the trial through the website or customer portal.
+
+	Customer Query: "Can I see a demo of your social media management tool?" (Trials and demos)
+	Response:
+		Schedule Demo: Offer to schedule a live demo at a convenient time.
+		Demo Overview: Explain what the demo will cover, such as key features, interface navigation, and how it can benefit their business.
+		Follow-Up: Ensure they know a sales representative will follow up after the demo to answer any questions and discuss next steps.
+		
+	Customer Query: "Is the trial version fully functional or limited in features?" (Trials and demos)
+	Response:
+		Trial Details: Clarify whether the trial version offers all features or a subset of the functionalities.
+		Purpose of Trial: Explain that the trial is designed to give a comprehensive overview of how the service works and what clients can expect.
+		Upgrade Information: Inform the customer how they can upgrade to the full version if they find the trial beneficial.
+		
+	Customer Query: "Can I extend the trial period if I need more time?" (Trials and demos)
+	Response:
+		Extension Policy: Provide information on your trial extension policy, if applicable.
+		Conditions: Explain any conditions or criteria required to qualify for an extension.
+		Next Steps: Offer to discuss their needs in more detail to determine the best course of action.
+	
+	Customer Query: "What happens after the demo?" (Trials and demos)
+	Response:
+		Follow-Up Plan: Explain that a sales representative will follow up to answer any questions and discuss their experience.
+		Next Steps: Outline the next steps, such as signing up for a trial, choosing a service package, or scheduling an onboarding session.
+		Support: Ensure them that your team is available to assist with any additional queries or concerns.
+		
+	Customer Query: "How do I get started with your services?" (Onboarding Process)
+	Response:
+		Step-by-Step Guide: Provide a clear, step-by-step overview of the onboarding process:
+			Initial Consultation: Schedule a consultation to understand their needs and goals.
+			Service Agreement: Sign a service agreement outlining the scope, deliverables, and terms.
+			Kick-Off Meeting: Arrange a kick-off meeting to introduce the team and set expectations.
+			Account Setup: Assist with setting up necessary accounts and tools.
+			Project Plan: Develop a project plan with timelines and milestones.
+			Execution: Begin executing the agreed-upon services.
+		Contact Information: Provide the contact details of the account manager who will be their primary point of contact throughout the process.
+		
+	Customer Query: "What is the onboarding process for new clients?" (Onboarding Process)
+	Response:
+		Detailed Explanation: Explain the onboarding process in detail:
+			Discovery Phase: Initial meetings to gather information and understand the client's business.
+			Planning Phase: Development of a customized marketing strategy and project plan.
+			Implementation Phase: Execution of the plan, including setting up tools and profiles, creating content, and launching campaigns.
+			Review and Adjust: Regular check-ins to review progress, gather feedback, and make necessary adjustments.
+		Timeline: Provide an estimated timeline for the onboarding process, typically ranging from 2 to 4 weeks.
+		
+	Customer Query: "What documents or information do I need to provide during onboarding?" (Onboarding Process)
+	Response:
+		Required Information: List the documents and information needed, such as business details, target audience information, current marketing materials, and access to existing platforms (e.g., website, social media accounts).
+		Purpose: Explain how each piece of information will be used to tailor your services to their needs.
+		Preparation Tips: Offer tips on how they can prepare these documents to ensure a smooth onboarding process.
+		
+	Customer Query: "How long does the onboarding process take?" (Onboarding Process)
+	Response:
+		Timeline Overview: Provide a general timeline, typically ranging from 2 to 4 weeks.
+		Phase Breakdown: Break down the onboarding process into phases (Discovery, Planning, Implementation, Review) and estimate the time required for each phase.
+		Factors Affecting Timeline: Mention factors that could influence the timeline, such as the complexity of the project and the client’s responsiveness.
+	
+	Customer Query: "Who will be my point of contact during the onboarding process?" (Onboarding Process)
+	Response:
+		Account Manager Assignment: Inform them that they will be assigned a dedicated account manager who will be their primary point of contact.
+		Team Introduction: Explain that they will also work with a team of specialists, including designers, marketers, and analysts, depending on their needs.
+		Contact Information: Provide the contact details of the account manager and any other relevant team members.
+		
+	Customer Query: "How do I set up my account for your email marketing service?" (Account Setup)
+	Response:
+	Guided Setup: Offer a step-by-step guide or walkthrough for setting up their account:
+		Sign-Up: Instruct them to sign up on the platform with their business email.
+		Verification: Guide them through the email verification process.
+		Profile Information: Help them fill out their profile information accurately.
+		Import Contacts: Show them how to import their email list into the platform.
+		Template Selection: Assist in selecting and customizing email templates.
+		First Campaign: Provide instructions for creating and sending their first email campaign.
+	Support: Inform them about available support resources, including FAQs, tutorials, and customer support contacts.
+	
+	Customer Query: "Can you guide me through setting up my profile?" (Account Setup)
+	Response:
+		Profile Setup Steps: Provide a detailed guide for setting up their profile on different platforms:
+			Website Management: Fill out company details, add team members, and set permissions.
+			Social Media Management: Complete profile information, upload logo and cover images, and add business description.
+			SEO Tools: Connect their website, set up tracking codes, and configure basic SEO settings.
+	Personalized Assistance: Offer to schedule a call or screen-sharing session to assist with the setup process.
+	
+	Customer Query: "Can I use my existing accounts and profiles, or do I need to create new ones?" (Account Setup)
+	Response:
+		Utilizing Existing Accounts: Assure them that they can use their existing accounts and profiles, and your team will help optimize them.
+		New Account Setup: If necessary, guide them on how to create new accounts and profiles, and explain the benefits of doing so.
+		Transition Assistance: Offer assistance in transitioning from old accounts to new ones if needed.
+		
+	Customer Query: "How do I integrate your tools with my existing marketing platforms?" (Account Setup)
+	Response:
+		Integration Support: Explain the process of integrating your tools with popular marketing platforms (e.g., Google Analytics, CRM systems).
+		Step-by-Step Guide: Provide a step-by-step guide or documentation to help with the integration.
+		Technical Assistance: Offer technical support or schedule a session with an expert to ensure a smooth integration.
+		
+	Customer Query: "What if I face issues during the account setup?" (Account Setup)
+	Response:
+		Support Availability: Reassure them that your support team is available to help with any issues.
+		Contact Methods: Provide multiple contact methods (phone, email, live chat) for immediate assistance.
+		Resources: Direct them to available resources, such as FAQs, troubleshooting guides, and video tutorials.
+
+Below are few example question for each categories:
+	Service Selection:
+		"Which service package is best for a small e-commerce business?"
+		"Can you help me decide which marketing service I need?"
+		
+	Trial and Demos:
+		"Do you offer a free trial for your services?"
+		"Can I see a demo of your social media management tool?"
+	
+	Onboarding Process:
+		"How do I get started with your services?"
+		"What is the onboarding process for new clients?"
+	
+	Account Setup:
+		"How do I set up my account for your email marketing service?"
+		"Can you guide me through setting up my profile?"
+		
