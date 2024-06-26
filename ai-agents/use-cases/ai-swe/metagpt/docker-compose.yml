@@ -1,0 +1,9 @@
+services:
+  metagpt:
+    image: metagpt/metagpt:latest
+    command: metagpt "Write a cli snake game"
+    privileged: true
+    volumes:
+      - ./config/config2.yaml:/app/metagpt/config/config2.yaml
+      - ./workspace:/app/metagpt/workspace
+    restart: no
