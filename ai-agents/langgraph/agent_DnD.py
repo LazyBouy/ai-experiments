@@ -84,7 +84,7 @@ def RollDice(state: TRPGState) -> TRPGState:
 
 # for conditional edges
 def check_need_roll(state: TRPGState) -> Literal["roll", "not roll"]:
-    if state.get("need_roll") == True:
+    if state.get("need_roll"):
         return "roll"
     else:
         return "not roll"
