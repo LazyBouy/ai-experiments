@@ -7,7 +7,7 @@ from typing import TypedDict, Literal, List, Dict
 from langchain_community.chat_models import ChatOllama
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-from abc import ABC, abstractmethod
+#from abc import ABC, abstractmethod
 
 LLM_CALL_THRESHOLD_PER_MOVE = 5
 
@@ -21,33 +21,80 @@ llm = ChatOllama(model=local_llm, format="json", temperature=0)
 # Define the state for our workflow
 class ChessBoard(TypedDict):
     board: chess.Board
-    game_status: str
+    current_move: Literal["white", "black"]
+    game_status: Literal[
+                         "game_in_progress", # game in progress
+                         "draw_offered", # game in progress
+                         "draw_offer_accepted",
+                         "draw_offer_rejected", # game in progress
+                         "draw_stalemate",
+                         "draw_insufficient_material",
+                         "draw_fivefold_repetition",
+                         "draw_seventyfive_moves",
+                         "win_white",
+                         "win_black",
+                         ]
     moves: List[Dict[str, int]]
     move_count: int
 
 # Define the base class for Player
-class AgentPlayer(ABC):
+class AgentPlayer():
     def __init__(self, state: ChessBoard, elo: int = 1500, color: Literal["white", "black"] = "white"):
         self.state = state
         self.elo = elo
         self.color : color
         
-    @abstractmethod
     def get_prompt_template(self) -> str:
-        pass        
+        
+        return """
+            You are a chess player with elo score {elo} and playing the game with {color}.
+            The chess board information below is in Forsyth-Edwards Notation (FEN) strings.
+            Board: {board_str} 
+            Status Draw offer: {draw_offer_status}; 
+                possible values: 
+                    [
+                        "none" = no draw offer exist, 
+                        "draw_offered" = an open draw offer exists from opponent,
+                        "draw_offer_rejected" = your draw offer was rejected by opponent. 
+                    ]  
+            Your task is to find the best next move in Standard Algebraic Notation (SAN).
+            Please adhere to the below rules:
+            1. You first check "Status Draw Offer". 
+            2. If "Status Draw Offer" == "draw_offered" then you may decide to "accept" or "reject" the draw offer, 
+            2. You may also offer draw by saying "draw", 
+               only if "Status Draw offer" != "draw_offer_rejected" and "Status Draw offer" != "draw_offered".
+            3. You may also resign by saying "resign".
+            3. You always try to win and make the best move possible. 
+            4. Your final output is just a json(no other text) as shown below: 
+                {{"decision": <your_move in SAN or "accepted" or "rejected" or "draw" or "resign">}}
+        """        
           
-    def move_from_llm(self) -> int:
+    # The Main Execution Function (MEF) for the agent
+    # Called ONLY when LLM touchpoint is required
+    # LLM touchpoints are required when the game statuses are:
+    #  - game_in_progress
+    #  - draw_offered
+    #  - draw_offer_rejected
+    def move_from_llm(self) -> ChessBoard:
         count = 1
         while count <= LLM_CALL_THRESHOLD_PER_MOVE:
             board = self.state.get("board")
             move_str = self.invoke_llm_chain()
+            
+            # Continue the game with NO-Board update
             if move_str == "draw":
-                self.state["game_status"] = "draw_offered"
-            elif  move_str == "draw_accepted":
+                self.state["game_status"] = "draw_offered"  
+            elif  move_str == "accepted":
                 self.state["game_status"] = "draw_offer_accepted"
-            else:
-                move = chess.Move.from_uci(move_str)
-                if move in board.legal_moves:
+            elif  move_str == "rejected":
+                self.state["game_status"] = "draw_offer_rejected"
+            elif move_str == "resigned":
+                self.state["game_status"] = "win_black" if self.color == "white" else "win_white" 
+            else: # Continue the game with Board update
+            
+                try:
+                    # Parse the move using the board's context
+                    move = board.parse_san(move_str)
                     board.push(move) 
                     
                     if board.is_stalemate():
@@ -74,18 +121,112 @@ class AgentPlayer(ABC):
                     else:
                         last_move = moves[-1]
                         last_move["black"] = move_str
-                        self.state["moves"][-1] = last_move  
-                else:
-                    count +=1
+                        self.state["moves"][-1] = last_move 
+                            
+                except (chess.InvalidMoveError, 
+                        chess.IllegalMoveError,
+                        chess.AmbiguousMoveError):
+                    count +=1                      
         
         if count > LLM_CALL_THRESHOLD_PER_MOVE:
             print ("llm_call_limit_exceeded")
             raise llm_call_limit_exceeded
-            
-    def invoke_llm_chain(self):
-        pass
         
-            
+        # Change Player if Winner is not yet decided
+        if "win_" not in self.state.get("game_status"):
+            self.state["current_move"] = "black" if self.color == "white" else "white"
+        
+        return self.state
+        
+    def invoke_llm_chain(self) -> str:
+        template = self.get_prompt_template()
+        prompt = PromptTemplate.from_template(template)
+        llm_chain = prompt | llm | StrOutputParser()
+        template = template.format(
+            board_str = self.state.get("board").fen(),
+            draw_offer_status = self.state.get("game_status"),
+            elo = self.elo,
+            color = self.color
+        )
+        generation = llm_chain.invoke({
+            "elo": self.elo,
+            "color": self.color,
+            "board_str": self.state.get("board").fen(), 
+            "draw_offer_status": self.state.get("game_status") if "draw" in self.state.get("game_status") else "none"
+        })
+        data = json.loads(generation)
+        """
+        Possible move_str
+        1. san
+        2. accepted
+        3. rejected
+        4. draw
+        5. resigned
+        """
+        move_str = data["decision"] 
+        
+        return move_str
+
+class PlayerW(AgentPlayer):
+    def __init__(self, state: ChessBoard):
+        super().__init__(state=state, color="white")
+        
+class PlayerB(AgentPlayer):
+    def __init__(self, state: ChessBoard):
+        super().__init__(state=state, color="black")
+        
+
+def transition(state: ChessBoard) -> Literal["white", "black", "end"]:
+    if state.get("game_status") in ["game_in_progress", 
+                                    "draw_offered", 
+                                    "draw_offer_rejected"]:
+        return state.get("current_move")
+    elif state.get("game_status") in ["draw_offer_accepted",
+                                      "draw_stalemate",
+                                      "draw_insufficient_material",
+                                      "draw_fivefold_repetition",
+                                      "draw_seventyfive_moves"]:
+        print(f"Game Tied! Reason: {state.get("game_status")}")
+        return "end"
+    else:
+        print(f"Game Decided! Reason: {state.get("game_status")}")
+        return "end"
+    
+        
+# Define the state machine
+workflow = StateGraph(ChessBoard)
+
+# Define Nodes
+workflow.add_node("agent_white", lambda state: PlayerW(state).move_from_llm())
+workflow.add_node("agent_black", lambda state: PlayerB(state).move_from_llm())
+
+# Define edges between nodes WHITE -> BLACK
+workflow.add_conditional_edges(
+    "agent_white",
+    transition,
+    {
+        "black": "agent_black",
+        "end": END,
+    }
+)
+
+# Define edges between nodes BLACK -> WHITE
+workflow.add_conditional_edges(
+    "agent_black",
+    transition,
+    {
+        "white": "agent_white",
+        "end": END,
+    }
+)
+
+# Initialize the state
+initial_state = ChessBoard(
+
+
         
     
+        
+    
+        
     
