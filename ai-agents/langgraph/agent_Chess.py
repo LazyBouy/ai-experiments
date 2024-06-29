@@ -5,18 +5,33 @@ import chess
 from langgraph.graph import StateGraph, END
 from typing import TypedDict, Literal, List, Dict
 from langchain_community.chat_models import ChatOllama
+from langchain_groq import ChatGroq
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+from langchain_core.callbacks import BaseCallbackHandler
 #from abc import ABC, abstractmethod
 
 LLM_CALL_THRESHOLD_PER_MOVE = 5
+
+# Call Back Handler
+class MyCustomHandler(BaseCallbackHandler):
+    def on_llm_new_token(self, token: str, **kwargs) -> None:
+        print(f"My custom handler, token: {token}")
 
 class llm_call_limit_exceeded(Exception):
     pass
 
 # Specify the local language model
-local_llm = "llama3:8b"
-llm = ChatOllama(model=local_llm, format="json", temperature=0)
+local_llm =  "llama3:8b" #"phi3:latest"
+llm = ChatOllama(model=local_llm, format="json", temperature=0, callbacks=[MyCustomHandler()])
+
+"""
+local_llm = "llama3-70b-8192"
+llm = ChatGroq(
+    temperature=0,
+    model="llama3-70b-8192"
+)
+"""
 
 # Define the state for our workflow
 class ChessBoard(TypedDict):
@@ -42,14 +57,16 @@ class AgentPlayer():
     def __init__(self, state: ChessBoard, elo: int = 1500, color: Literal["white", "black"] = "white"):
         self.state = state
         self.elo = elo
-        self.color : color
+        self.color = color
         
     def get_prompt_template(self) -> str:
         
         return """
             You are a chess player with elo score {elo} and playing the game with {color}.
-            The chess board information below is in Forsyth-Edwards Notation (FEN) strings.
-            Board: {board_str} 
+            The chess board information is in Forsyth-Edwards Notation (FEN) strings below.
+            You check the board information (in FEN string) and "move number" very carefully before making the next move.
+            Board (in FEN string): {board_str} 
+            Move Number: {move_number}
             Status Draw offer: {draw_offer_status}; 
                 possible values: 
                     [
@@ -57,7 +74,7 @@ class AgentPlayer():
                         "draw_offered" = an open draw offer exists from opponent,
                         "draw_offer_rejected" = your draw offer was rejected by opponent. 
                     ]  
-            Your task is to find the best next move in Standard Algebraic Notation (SAN).
+            Your task is to find the best next move in Standard Algebraic Notation (SAN) string.
             Please adhere to the below rules:
             1. You first check "Status Draw Offer". 
             2. If "Status Draw Offer" == "draw_offered" then you may decide to "accept" or "reject" the draw offer, 
@@ -66,7 +83,7 @@ class AgentPlayer():
             3. You may also resign by saying "resign".
             3. You always try to win and make the best move possible. 
             4. Your final output is just a json(no other text) as shown below: 
-                {{"decision": <your_move in SAN or "accepted" or "rejected" or "draw" or "resign">}}
+                {{"decision": (str) <your_move in "SAN string" or "accepted" or "rejected" or "draw" or "resign">}}
         """        
           
     # The Main Execution Function (MEF) for the agent
@@ -122,6 +139,8 @@ class AgentPlayer():
                         last_move = moves[-1]
                         last_move["black"] = move_str
                         self.state["moves"][-1] = last_move 
+                        
+                    break
                             
                 except (chess.InvalidMoveError, 
                         chess.IllegalMoveError,
@@ -141,19 +160,18 @@ class AgentPlayer():
     def invoke_llm_chain(self) -> str:
         template = self.get_prompt_template()
         prompt = PromptTemplate.from_template(template)
-        llm_chain = prompt | llm | StrOutputParser()
-        template = template.format(
-            board_str = self.state.get("board").fen(),
-            draw_offer_status = self.state.get("game_status"),
-            elo = self.elo,
-            color = self.color
-        )
-        generation = llm_chain.invoke({
+        prompt_format = {
             "elo": self.elo,
             "color": self.color,
             "board_str": self.state.get("board").fen(), 
+            "move_number": (self.state.get("move_count") + 1) if self.color == "white" else self.state.get("move_count"),
             "draw_offer_status": self.state.get("game_status") if "draw" in self.state.get("game_status") else "none"
-        })
+        }
+        print(prompt.format_prompt(
+            **prompt_format
+        ))
+        llm_chain = prompt | llm | StrOutputParser()
+        generation = llm_chain.invoke(prompt_format)
         data = json.loads(generation)
         """
         Possible move_str
@@ -186,10 +204,10 @@ def transition(state: ChessBoard) -> Literal["white", "black", "end"]:
                                       "draw_insufficient_material",
                                       "draw_fivefold_repetition",
                                       "draw_seventyfive_moves"]:
-        print(f"Game Tied! Reason: {state.get("game_status")}")
+        print(f"""Game Tied! Reason: {state.get("game_status")}""")
         return "end"
     else:
-        print(f"Game Decided! Reason: {state.get("game_status")}")
+        print(f"""Game Decided! Reason: {state.get("game_status")}""")
         return "end"
     
         
@@ -199,6 +217,8 @@ workflow = StateGraph(ChessBoard)
 # Define Nodes
 workflow.add_node("agent_white", lambda state: PlayerW(state).move_from_llm())
 workflow.add_node("agent_black", lambda state: PlayerB(state).move_from_llm())
+
+workflow.set_entry_point("agent_white")
 
 # Define edges between nodes WHITE -> BLACK
 workflow.add_conditional_edges(
@@ -222,6 +242,18 @@ workflow.add_conditional_edges(
 
 # Initialize the state
 initial_state = ChessBoard(
+    board=chess.Board(),
+    current_move="white",
+    game_status = "game_in_progress",
+    moves=list(),
+    move_count=0
+)
+
+# Compile the workflow into a runnable app
+app = workflow.compile()
+
+for event in app.stream(initial_state):
+    print(event)
 
 
         
