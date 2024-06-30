@@ -6,6 +6,7 @@ from langgraph.graph import StateGraph, END
 from typing import TypedDict, Literal, List, Dict
 from langchain_community.chat_models import ChatOllama
 from langchain_groq import ChatGroq
+from langchain_openai import ChatOpenAI
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.callbacks import BaseCallbackHandler
@@ -13,30 +14,42 @@ from langchain_core.callbacks import BaseCallbackHandler
 
 LLM_CALL_THRESHOLD_PER_MOVE = 5
 
+"""
 # Call Back Handler
 class MyCustomHandler(BaseCallbackHandler):
     def on_llm_new_token(self, token: str, **kwargs) -> None:
         print(f"My custom handler, token: {token}")
+"""
 
 class llm_call_limit_exceeded(Exception):
     pass
 
+"""
 # Specify the local language model
 local_llm =  "llama3:8b" #"phi3:latest"
 llm = ChatOllama(model=local_llm, format="json", temperature=0, callbacks=[MyCustomHandler()])
+"""
 
 """
-local_llm = "llama3-70b-8192"
+#llm_model = "llama3-70b-8192" 
+llm_model = "mixtral-8x7b-32768"
 llm = ChatGroq(
     temperature=0,
-    model="llama3-70b-8192"
+    model=llm_model
 )
 """
+
+llm_model = "gpt-4o"
+llm = ChatOpenAI(
+    model=llm_model, 
+    temperature=0
+)
+
 
 # Define the state for our workflow
 class ChessBoard(TypedDict):
     board: chess.Board
-    current_move: Literal["white", "black"]
+    current_player: Literal["white", "black"]
     game_status: Literal[
                          "game_in_progress", # game in progress
                          "draw_offered", # game in progress
@@ -62,11 +75,12 @@ class AgentPlayer():
     def get_prompt_template(self) -> str:
         
         return """
-            You are a chess player with elo score {elo} and playing the game with {color}.
+            You are a chess player with elo score {elo} and playing the game with {color}. You always try to win and make the best move possible. 
+            You check the board information (in FEN string) and "Previous Moves" very carefully before making the next move. 
             The chess board information is in Forsyth-Edwards Notation (FEN) strings below.
-            You check the board information (in FEN string) and "move number" very carefully before making the next move.
             Board (in FEN string): {board_str} 
-            Move Number: {move_number}
+            Previous Moves: {previous_moves}
+            Current Move Number: {move_number}
             Status Draw offer: {draw_offer_status}; 
                 possible values: 
                     [
@@ -77,13 +91,11 @@ class AgentPlayer():
             Your task is to find the best next move in Standard Algebraic Notation (SAN) string.
             Please adhere to the below rules:
             1. You first check "Status Draw Offer". 
-            2. If "Status Draw Offer" == "draw_offered" then you may decide to "accept" or "reject" the draw offer, 
-            2. You may also offer draw by saying "draw", 
-               only if "Status Draw offer" != "draw_offer_rejected" and "Status Draw offer" != "draw_offered".
-            3. You may also resign by saying "resign".
-            3. You always try to win and make the best move possible. 
-            4. Your final output is just a json(no other text) as shown below: 
-                {{"decision": (str) <your_move in "SAN string" or "accepted" or "rejected" or "draw" or "resign">}}
+            2. If "Status Draw Offer" == "draw_offered" then you may decide whether to "accept" or "reject" the draw offer, 
+            3. You may also offer draw by saying "draw", only if "Status Draw offer" != "draw_offer_rejected" and "Status Draw offer" != "draw_offered".
+            4. You may also resign by saying "resign".
+            5. Your final output is just the json (no other text or explanation) as shown below: 
+                {output_format}
         """        
           
     # The Main Execution Function (MEF) for the agent
@@ -153,7 +165,7 @@ class AgentPlayer():
         
         # Change Player if Winner is not yet decided
         if "win_" not in self.state.get("game_status"):
-            self.state["current_move"] = "black" if self.color == "white" else "white"
+            self.state["current_player"] = "black" if self.color == "white" else "white"
         
         return self.state
         
@@ -164,8 +176,11 @@ class AgentPlayer():
             "elo": self.elo,
             "color": self.color,
             "board_str": self.state.get("board").fen(), 
+            #"previous_moves": json.dumps(self.state.get("moves")),
+            "previous_moves": json.dumps([(m["white"], m["black"])for m in self.state.get("moves")]),
             "move_number": (self.state.get("move_count") + 1) if self.color == "white" else self.state.get("move_count"),
-            "draw_offer_status": self.state.get("game_status") if "draw" in self.state.get("game_status") else "none"
+            "draw_offer_status": self.state.get("game_status") if "draw" in self.state.get("game_status") else "none",
+            "output_format": """{"decision": (str) <your_move in "SAN string" or "accepted" or "rejected" or "draw" or "resign">}"""
         }
         print(prompt.format_prompt(
             **prompt_format
@@ -198,7 +213,7 @@ def transition(state: ChessBoard) -> Literal["white", "black", "end"]:
     if state.get("game_status") in ["game_in_progress", 
                                     "draw_offered", 
                                     "draw_offer_rejected"]:
-        return state.get("current_move")
+        return state.get("current_player")
     elif state.get("game_status") in ["draw_offer_accepted",
                                       "draw_stalemate",
                                       "draw_insufficient_material",
@@ -243,7 +258,7 @@ workflow.add_conditional_edges(
 # Initialize the state
 initial_state = ChessBoard(
     board=chess.Board(),
-    current_move="white",
+    current_player="white",
     game_status = "game_in_progress",
     moves=list(),
     move_count=0
