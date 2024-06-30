@@ -8,8 +8,9 @@ from langchain_community.chat_models import ChatOllama
 from langchain_groq import ChatGroq
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import PromptTemplate
-from langchain_core.output_parsers import StrOutputParser
 from langchain_core.callbacks import BaseCallbackHandler
+from langchain.output_parsers import PydanticOutputParser, OutputFixingParser
+from langchain_core.pydantic_v1 import BaseModel, Field
 #from abc import ABC, abstractmethod
 
 LLM_CALL_THRESHOLD_PER_MOVE = 5
@@ -31,8 +32,9 @@ llm = ChatOllama(model=local_llm, format="json", temperature=0, callbacks=[MyCus
 """
 
 """
-#llm_model = "llama3-70b-8192" 
-llm_model = "mixtral-8x7b-32768"
+llm_model = "llama3-70b-8192" 
+#llm_model = "mixtral-8x7b-32768"
+#llm_model = "gemma-7b-it"
 llm = ChatGroq(
     temperature=0,
     model=llm_model
@@ -94,7 +96,7 @@ class AgentPlayer():
             2. If "Status Draw Offer" == "draw_offered" then you may decide whether to "accept" or "reject" the draw offer, 
             3. You may also offer draw by saying "draw", only if "Status Draw offer" != "draw_offer_rejected" and "Status Draw offer" != "draw_offered".
             4. You may also resign by saying "resign".
-            5. Your final output is just the json (no other text or explanation) as shown below: 
+            5. Your final output is just the json as shown below (no other text, tags(json etc.) or explanation are required): 
                 {output_format}
         """        
           
@@ -185,9 +187,13 @@ class AgentPlayer():
         print(prompt.format_prompt(
             **prompt_format
         ))
-        llm_chain = prompt | llm | StrOutputParser()
+        
+        parser = OutputFixingParser.from_llm(parser=PydanticOutputParser(pydantic_object=Move), llm=llm)
+        
+        
+        llm_chain = prompt | llm | parser
         generation = llm_chain.invoke(prompt_format)
-        data = json.loads(generation)
+        data = dict(generation)
         """
         Possible move_str
         1. san
@@ -207,7 +213,9 @@ class PlayerW(AgentPlayer):
 class PlayerB(AgentPlayer):
     def __init__(self, state: ChessBoard):
         super().__init__(state=state, color="black")
-        
+ 
+class Move(BaseModel):
+    decision: str = Field(description="""your_move in "SAN string" or "accepted" or "rejected" or "draw" or "resign".""")      
 
 def transition(state: ChessBoard) -> Literal["white", "black", "end"]:
     if state.get("game_status") in ["game_in_progress", 
