@@ -1,5 +1,6 @@
 import openai
 from langchain_core.tools import tool
+from setup.extract_doc import VectorStoreRetriever, extract_docs
 
 
 retriever = VectorStoreRetriever.from_docs(extract_docs(), openai.Client(base_url="http://localhost:11434"))
